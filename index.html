@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Триъгълник и трапец | Математика 8. клас</title>
+<style>
+:root{
+  --ink:#293747;--muted:#687887;--paper:#f4f8fc;--white:#fff;
+  --orange:#df874b;--orange-dark:#a9572c;--line:#e2eaf1;
+  --blue:#47718f;--green:#54815c;--purple:#7770a8;--rose:#a95f70;
+  --shadow:0 12px 34px rgba(55,42,25,.08);--radius:18px
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 8% 5%,#e6f3f5 0,transparent 34%),radial-gradient(ellipse at 92% 16%,#fcebdc 0,transparent 32%),linear-gradient(135deg,#f7faff,#f4f7fb 55%,#fbf6f0);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+header{background:linear-gradient(120deg,#e9f4f7 0%,#f7eee5 52%,#f8e6dc 100%);color:#293747;padding:44px 22px 38px;border-bottom:1px solid #e5e9ed}
+.hero{max-width:1120px;margin:auto}
+.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;color:#a65f39;font-weight:800}
+h1{font-size:clamp(2rem,5vw,3.45rem);line-height:1.08;margin:12px 0}
+header p{max-width:650px;color:#536575;margin:12px 0 0;font-size:1.05rem}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.pill{border:1px solid #d6e0e8;border-radius:999px;padding:6px 12px;font-size:.82rem;color:#536575;background:#ffffff99}
+main{max-width:1120px;margin:28px auto 70px;padding:0 18px}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:22px;align-items:start}
+nav{position:sticky;top:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+.nav-title{font-size:.78rem;color:var(--muted);font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:8px 10px 12px}
+.nav-btn{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;text-align:left;padding:11px 10px;border-radius:12px;color:var(--ink);font:inherit;cursor:pointer;margin:2px 0}
+.nav-btn:hover{background:#edf4f8}
+.nav-btn.active{background:#eaf2f8;color:#365f7c;font-weight:750}
+.num{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:#edf1f5;font-size:.78rem;font-weight:800;flex:none}
+.nav-btn.active .num{background:#7fa9c4;color:#fff}
+.content{min-width:0}
+.intro-card,.lesson{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(20px,3vw,32px)}
+.intro-card{margin-bottom:18px}
+.intro-card h2{margin:0 0 6px;font-size:1.45rem}
+.intro-card p{margin:0;color:var(--muted)}
+.lesson{display:none}
+.lesson.active{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:.5;transform:translateY(5px)}to{opacity:1;transform:none}}
+.lesson-kicker{font-size:.76rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-dark)}
+h2{font-size:clamp(1.55rem,3vw,2.1rem);line-height:1.2;margin:8px 0 18px}
+h3{font-size:1.12rem;margin:26px 0 10px}
+p{margin:8px 0}
+.rule{background:#fff8f1;border:1px solid #f0dfd0;border-left:4px solid var(--orange);padding:15px 17px;border-radius:12px;margin:16px 0}
+.rule strong{display:block;margin-bottom:4px}
+ .formula{font-size:1.2rem;font-weight:800;letter-spacing:.01em;color:#8d481e;margin:12px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.frac{display:inline-flex;vertical-align:middle;flex-direction:column;align-items:center;line-height:1.15;font-size:1.08em;min-width:1.5em}
+.frac .top{padding:0 .22em .12em;border-bottom:2px solid currentColor}
+.frac .bottom{padding:.12em .22em 0}
+.note{color:var(--muted);font-size:.92rem}
+.grid-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mini{border:1px solid var(--line);border-radius:14px;padding:15px;background:#fff}
+.mini h4{margin:0 0 6px}
+.diagram{background:#f7fbfd;border:1px solid var(--line);border-radius:14px;padding:12px;margin:16px 0;display:flex;justify-content:center;align-items:center}
+.diagram svg{max-width:100%;height:auto}
+.task-list{display:grid;gap:11px;margin-top:12px}
+.task{border:1px solid var(--line);border-radius:13px;padding:14px 15px;background:#fff}
+.task-top{display:flex;gap:10px;align-items:flex-start}
+.task input{margin-top:6px;accent-color:var(--green);width:17px;height:17px;flex:none}
+.task p{margin:0}
+.task small{display:block;color:var(--muted);margin-top:6px}
+.task.done{background:#f4faf4;border-color:#cfe1d0}
+.task.done p{text-decoration:line-through;color:#718074}
+.tag{display:inline-block;font-size:.72rem;color:#80522f;background:#f7eadc;border-radius:99px;padding:2px 8px;margin:0 4px 5px 0}
+.progress-wrap{margin-top:22px;background:#f4f1eb;border-radius:99px;height:9px;overflow:hidden}
+.progress{height:100%;width:0;background:linear-gradient(90deg,#d97736,#54815c);transition:width .2s}
+.progress-label{font-size:.82rem;color:var(--muted);margin-top:7px}
+.footer-nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+button.action{border:0;border-radius:11px;background:#65452f;color:#fff;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer}
+button.action:hover{background:#8d572f}
+button.action.secondary{background:#f0ece5;color:#55483d}
+button.action:disabled{opacity:.35;cursor:not-allowed}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 15px 40px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}nav{position:static}.nav-items{display:grid;grid-template-columns:1fr 1fr;gap:2px}.nav-title{padding-bottom:6px}}
+@media(max-width:520px){header{padding:34px 18px}.grid-two{grid-template-columns:1fr}.nav-items{grid-template-columns:1fr}.footer-nav{flex-direction:column}.footer-nav button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+ <div class="hero">
+  <div class="eyebrow">Дигитална учебна среда · 8. клас</div>
+  <h1>Триъгълник<br>и трапец</h1>
+  <p>Преговори най-важните определения, теореми и формули. След това реши подбраните задачи.</p>
+  <div class="hero-meta"><span class="pill">6 урока</span><span class="pill">Теория и задачи</span></div>
+ </div>
+</header>
+<main>
+ <div class="layout">
+  <nav aria-label="Уроци">
+   <div class="nav-title">Съдържание</div>
+   <div class="nav-items">
+    <button class="nav-btn active" data-target="s1"><span class="num">01</span><span>Деление на отсечка</span></button>
+    <button class="nav-btn" data-target="s2"><span class="num">02</span><span>Средна отсечка в триъгълник</span></button>
+    <button class="nav-btn" data-target="s3"><span class="num">03</span><span>Медицентър на триъгълник</span></button>
+    <button class="nav-btn" data-target="s4"><span class="num">04</span><span>Трапец</span></button>
+    <button class="nav-btn" data-target="s5"><span class="num">05</span><span>Равнобедрен трапец</span></button>
+    <button class="nav-btn" data-target="s6"><span class="num">06</span><span>Средна основа на трапец</span></button>
+   </div>
+   <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+  </nav>
+  <section class="content">
+   <div class="intro-card">
+    <h2>Подготовка за контролна работа</h2>
+    <p>Избери урок от менюто и реши задачите самостоятелно. Преговори теорията и приложи наученото.</p>
+   </div>
+
+   <article class="lesson active" id="s1">
+    <div class="lesson-kicker">Урок 1</div><h2>Деление на отсечка в дадено отношение</h2>
+    <p>Когато точка M разделя отсечката AB, отношението зависи от дължините на двете получени части и от реда, в който са посочени.</p>
+    <div class="grid-two">
+     <div class="mini"><h4>Вътрешно деление</h4><p>Точката M лежи между A и B.</p><div class="formula">AM : MB = m : n</div></div>
+     <div class="mini"><h4>Външно деление</h4><p>Точката е върху правата AB, но извън отсечката AB.</p><div class="formula">Отношението се записва според зададения ред.</div></div>
+    </div>
+    <div class="diagram"><svg viewBox="0 0 560 120" role="img" aria-label="Отсечка AB, разделена от точка M"><line x1="65" y1="55" x2="495" y2="55" stroke="#536b79" stroke-width="4" stroke-linecap="round"/><line x1="65" y1="55" x2="280" y2="55" stroke="#d97736" stroke-width="7" stroke-linecap="round"/><circle cx="65" cy="55" r="6" fill="#263238"/><circle cx="280" cy="55" r="6" fill="#d97736"/><circle cx="495" cy="55" r="6" fill="#263238"/><g font-size="17" fill="#263238" text-anchor="middle"><text x="65" y="86">A</text><text x="280" y="86">M</text><text x="495" y="86">B</text><text x="170" y="35" fill="#a94f1e">AM</text><text x="390" y="35">MB</text></g></svg></div>
+    <div class="rule"><strong>Важно при решаване</strong>Първо установи коя точка е начална в условието („считано от A“ или „считано от B“). След това запиши отношението в същия ред. При вътрешно деление цялата отсечка е сбор от двете части.</div>
+    <h3>Задачи за самостоятелна работа</h3>
+    <div class="task-list">
+     <div class="task"><p>Точка M лежи на отсечката AB, като AM = 2,1 cm и MB = 3,5 cm. Точка M дели отсечката AB, считано от точка B, в отношение:</p></div>
+     <div class="task"><p>Точка N лежи на отсечката AB така, че AN : NB = 7 : 4 и AN = 23,1 dm. Дължината на отсечката AB е:</p></div>
+     <div class="task"><p>Точка Q лежи на правата AB и B е между A и Q, като AB = 2,5 cm и QB = 3,5 cm. Точка Q дели външно отсечката AB, считано от точка B, в отношение:</p></div>
+     <div class="task"><p>Точка L дели външно отсечката AB в отношение 2 : 5, считано от точката A. Намерете отношението LA : AB.</p></div>
+    </div>
+    <div class="footer-nav"><button class="action secondary" disabled>Предишен урок</button><button class="action next">Следващ урок →</button></div>
+   </article>
+
+   <article class="lesson" id="s2">
+    <div class="lesson-kicker">Урок 2</div><h2>Средна отсечка в триъгълник</h2>
+    <p>Средната отсечка в триъгълник е отсечката, която свързва средите на две от страните му.</p>
+    <div class="rule"><strong>Теорема за средната отсечка</strong>Средната отсечка в триъгълник е успоредна на третата страна и дължината ѝ е равна на половината от дължината на тази страна.</div>
+    <div class="formula">MN ∥ BC &nbsp;&nbsp; и &nbsp;&nbsp; MN = <span class="frac"><span class="top">BC</span><span class="bottom">2</span></span></div>
+    <div class="diagram"><svg viewBox="0 0 560 260" role="img" aria-label="Триъгълник с отсечка, свързваща среди на две страни"><polygon points="280,25 80,220 480,220" fill="#f8eee3" stroke="#536b79" stroke-width="3"/><line x1="180" y1="122" x2="380" y2="122" stroke="#d97736" stroke-width="5"/><circle cx="180" cy="122" r="5" fill="#d97736"/><circle cx="380" cy="122" r="5" fill="#d97736"/><g font-size="18" fill="#263238"><text x="272" y="18">A</text><text x="58" y="238">B</text><text x="488" y="238">C</text><text x="155" y="115" fill="#a94f1e">M</text><text x="388" y="115" fill="#a94f1e">N</text><text x="265" y="111" fill="#a94f1e">MN</text><text x="275" y="249">BC</text></g></svg></div>
+    <h3>Какво трябва да запомниш?</h3>
+    <ul><li>Краищата на средната отсечка са среди на две страни.</li><li>Средната отсечка е успоредна на третата страна.</li><li>Дължината ѝ е два пъти по-малка от третата страна.</li></ul>
+    <h3>Задачи за самостоятелна работа</h3>
+    <div class="task-list">
+     <div class="task"><p>Периметърът на триъгълник е 36 cm. Намерете периметъра на триъгълник с върхове средите на страните на дадения триъгълник.</p></div>
+     <div class="task"><p>Точка K дели страната AC на ΔABC в отношение 2 : 3, считано от точката C, и CK = 6,6 cm. Точките M и N са среди съответно на AB и BC. Дължината на отсечката MN е:</p></div>
+     <div class="task"><p>Точка Q дели страната BC на ΔABC в отношение 4 : 3, считано от точката B. Точките M и N са среди съответно на AB и AC и MN = 6,3 cm. Дължината на отсечката BQ е:</p></div>
+     <div class="task"><p>През средата P на медианата AA₁ в ΔABC е построена права, успоредна на BC, която пресича AB в точка M. Ако MP = x cm и BC = x + 21 cm, то x =:</p></div>
+    </div>
+    <div class="footer-nav"><button class="action secondary prev">← Предишен урок</button><button class="action next">Следващ урок →</button></div>
+   </article>
+
+   <article class="lesson" id="s3">
+    <div class="lesson-kicker">Урок 3</div><h2>Медицентър на триъгълник</h2>
+    <p>Медицентърът е общата точка на трите медиани в триъгълника. Той се означава с G.</p>
+    <div class="rule"><strong>Теорема за медицентъра</strong>Медицентърът разделя всяка медиана в отношение 2 : 1, считано от върха на триъгълника.</div>
+    <div class="formula">AG : GM = 2 : 1</div>
+    <div class="diagram"><svg viewBox="0 0 560 270" role="img" aria-label="Медиана и медицентър в триъгълник"><polygon points="280,25 75,225 485,225" fill="#f1eff8" stroke="#536b79" stroke-width="3"/><line x1="280" y1="25" x2="280" y2="225" stroke="#7770a8" stroke-width="3"/><line x1="75" y1="225" x2="382.5" y2="125" stroke="#b6b0d5" stroke-width="2"/><line x1="485" y1="225" x2="177.5" y2="125" stroke="#b6b0d5" stroke-width="2"/><circle cx="280" cy="158.3" r="6" fill="#a95f70"/><circle cx="280" cy="225" r="5" fill="#263238"/><g font-size="18" fill="#263238"><text x="270" y="17">A</text><text x="52" y="245">B</text><text x="490" y="245">C</text><text x="292" y="161" fill="#a95f70">G</text><text x="292" y="118" fill="#7770a8">2 части</text><text x="292" y="205" fill="#7770a8">1 част</text><text x="292" y="247">M</text></g></svg></div>
+    <p class="note">Ако AM е медиана, а G е медицентърът, тогава AG е два пъти по-дълга от GM.</p>
+    <h3>Задачи за самостоятелна работа</h3>
+    <div class="task-list">
+     <div class="task"><p>Нека BM е медиана в ΔABC и точка G е медицентър. Отношението BG : BM е равно на:</p></div>
+     <div class="task"><p>Основата AB на равнобедрения ΔABC е с дължина 7 cm, а разстоянието от медицентъра му до върха C е 4 cm. Лицето на триъгълника е:</p></div>
+     <div class="task"><p>Катетите AC и BC на правоъгълния ΔABC имат дължини съответно 24 cm и 18 cm, а разстоянието от медицентъра му до върха C е 10 cm. Периметърът на триъгълника е:</p></div>
+    </div>
+    <div class="footer-nav"><button class="action secondary prev">← Предишен урок</button><button class="action next">Следващ урок →</button></div>
+   </article>
+
+   <article class="lesson" id="s4">
+    <div class="lesson-kicker">Урок 4</div><h2>Трапец</h2>
+    <p>Няма да повтаряме определението за трапец. Ще използваме познатите означения и свойства, за да разчитаме чертежа и да съставяме отношения.</p>
+    <div class="diagram"><svg viewBox="0 0 560 235" role="img" aria-label="Трапец с означени върхове и основи"><polygon points="165,35 395,35 500,200 60,200" fill="#eaf2eb" stroke="#536b79" stroke-width="3"/><g font-size="18" fill="#263238"><text x="145" y="28">D</text><text x="402" y="28">C</text><text x="42" y="222">A</text><text x="505" y="222">B</text><text x="270" y="25" fill="#54815c">CD</text><text x="270" y="225" fill="#54815c">AB</text></g></svg></div>
+    <div class="rule"><strong>При решаване на задачи</strong>Отбелязвай двете основи, бедрата и височините. Следи коя основа е по-голяма и как са разположени допълнителните отсечки в чертежа.</div>
+    <h3>Задача за самостоятелна работа</h3>
+    <div class="task-list">
+     <div class="task"><p>Височините DD₁ и CC₁ на трапеца ABCD пресичат средната му основа MN съответно в точки P и Q и я разделят на 3 равни части. Отношението CD : MN : AB е равно на:</p></div>
+    </div>
+    <div class="footer-nav"><button class="action secondary prev">← Предишен урок</button><button class="action next">Следващ урок →</button></div>
+   </article>
+
+   <article class="lesson" id="s5">
+    <div class="lesson-kicker">Урок 5</div><h2>Равнобедрен трапец</h2>
+    <p>Тук прилагаме свойствата на равнобедрения трапец при намиране на лице, височина и дължини на основите.</p>
+    <div class="grid-two">
+     <div class="mini"><h4>Равнобедрен трапец</h4><p>Бедрата му са равни, а ъглите при всяка основа са равни.</p></div>
+     <div class="mini"><h4>Височина</h4><p>Перпендикулярът между правите, съдържащи основите, определя височината.</p></div>
+    </div>
+    <div class="diagram"><svg viewBox="0 0 560 250" role="img" aria-label="Равнобедрен трапец с основи и височина"><polygon points="170,45 390,45 500,205 60,205" fill="#eaf2eb" stroke="#536b79" stroke-width="3"/><line x1="170" y1="45" x2="170" y2="205" stroke="#54815c" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M170 193 L182 193 L182 205" fill="none" stroke="#54815c" stroke-width="2"/><g font-size="18" fill="#263238"><text x="150" y="35">D</text><text x="397" y="35">C</text><text x="43" y="225">A</text><text x="505" y="225">B</text><text x="140" y="130" fill="#54815c">h</text><text x="270" y="31">малка основа</text><text x="265" y="231">голяма основа</text></g></svg></div>
+    <h3>Задачи за самостоятелна работа</h3>
+    <div class="task-list">
+     <div class="task"><p>Лицето на равнобедрен трапец с основи 12 cm и 8 cm и ъгъл 135° е равно на:</p></div>
+     <div class="task"><p>Трапецът ABCD е равнобедрен със средна основа MN = 14 cm и височина DH. Ако AH = 4 cm, намерете дължините на основите на трапеца.</p></div>
+    </div>
+    <div class="footer-nav"><button class="action secondary prev">← Предишен урок</button><button class="action next">Следващ урок →</button></div>
+   </article>
+
+   <article class="lesson" id="s6">
+    <div class="lesson-kicker">Урок 6</div><h2>Средна основа на трапец</h2>
+    <p>Средната основа (средната отсечка) на трапеца свързва средите на бедрата му.</p>
+    <div class="rule"><strong>Теорема за средната основа</strong>Средната основа на трапец е успоредна на основите му и дължината ѝ е равна на полусбора на дължините на двете основи.</div>
+    <div class="formula">m = <span class="frac"><span class="top">a + b</span><span class="bottom">2</span></span></div>
+    <div class="diagram"><svg viewBox="0 0 560 270" role="img" aria-label="Трапец със средна основа и диагонали"><polygon points="150,35 410,35 500,225 60,225" fill="#f8edf0" stroke="#536b79" stroke-width="3"/><line x1="105" y1="130" x2="455" y2="130" stroke="#a95f70" stroke-width="4"/><line x1="150" y1="35" x2="500" y2="225" stroke="#8b9ba3" stroke-width="2"/><line x1="410" y1="35" x2="60" y2="225" stroke="#8b9ba3" stroke-width="2"/><circle cx="235" cy="130" r="5" fill="#a95f70"/><circle cx="325" cy="130" r="5" fill="#a95f70"/><g font-size="17" fill="#263238"><text x="132" y="25">D</text><text x="416" y="25">C</text><text x="42" y="245">A</text><text x="505" y="245">B</text><text x="220" y="116" fill="#a95f70" font-weight="700">M</text><text x="330" y="116" fill="#a95f70" font-weight="700">N</text><text x="275" y="18">b</text><text x="275" y="265">a</text></g></svg></div>
+    <div class="rule"><strong>Частта от средната основа между диагоналите</strong>Ако a е по-голямата основа, а b е по-малката основа, отсечката MN между пресечните точки на диагоналите със средната основа е:</div>
+    <div class="formula">MN = <span class="frac"><span class="top">a − b</span><span class="bottom">2</span></span></div>
+    <p class="note">Полезно е да запомниш и че диагоналите разделят средната основа на три части: двете крайни части са равни на половината от по-малката основа, а средната част е половината от разликата на основите.</p>
+    <h3>Задачи за самостоятелна работа</h3>
+    <div class="task-list">
+     <div class="task"><p>Средната основа на трапец е с дължина 32 cm, а отношението на основите му е 5 : 3. По-голямата основа е с дължина:</p></div>
+     <div class="task"><p>Диагоналите на трапец разделят средната му основа на 3 равни части. Ако голямата му основа е дълга 21,6 cm, то дължината на средната му основа е:</p></div>
+     <div class="task"><p>Диагоналите на трапец разделят средната му основа, дълга 11,4 cm, на 3 равни части. Дължината на голямата му основа е:</p></div>
+     <div class="task"><p>Даден е трапец ABCD със средна основа MN. Диагоналът AC пресича MN в точка P. Ако MN = 16 cm и PN е с 4 cm по-голяма от MP, намерете частта от средната основа, заключена между диагоналите на трапеца.</p></div>
+     <div class="task"><p>Височините DD₁ и CC₁ на трапеца ABCD пресичат средната му основа MN съответно в точки P и Q и я разделят на 3 равни части. Отношението CD : MN : AB е равно на:</p></div>
+    </div>
+    <div class="footer-nav"><button class="action secondary prev">← Предишен урок</button><button class="action" id="finish">Край на преговора ✓</button></div>
+   </article>
+  </section>
+ </div>
+</main>
+<footer>Математика · 8. клас &nbsp;|&nbsp; Триъгълник и трапец</footer>
+<script>
+const buttons=[...document.querySelectorAll('.nav-btn')];
+const lessons=[...document.querySelectorAll('.lesson')];
+function show(id){
+ lessons.forEach(x=>x.classList.toggle('active',x.id===id));
+ buttons.forEach(x=>x.classList.toggle('active',x.dataset.target===id));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+buttons.forEach(b=>b.addEventListener('click',()=>show(b.dataset.target)));
+document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{
+ const i=lessons.findIndex(x=>x.classList.contains('active')); if(i<lessons.length-1)show(lessons[i+1].id);
+}));
+document.querySelectorAll('.prev').forEach(b=>b.addEventListener('click',()=>{
+ const i=lessons.findIndex(x=>x.classList.contains('active')); if(i>0)show(lessons[i-1].id);
+}));
+
+</script>
+</body>
+</html>
